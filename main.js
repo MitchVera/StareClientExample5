@@ -28,7 +28,11 @@ const STARE_API_URL = 'https://tz3x5s-3001.csb.app';
   const getResults = (engine, query, pageNumber) => {
     return new Promise((resolve, reject) => {
       axios.get(`${STARE_API_URL}/${engine}?query=${query}&pageNumber=${pageNumber}`)
-        .then(response => resolve(response?.data))
+           .then(response => {
+     if(response) {
+       resolve(response.data)
+     }
+   })
         .catch(error => reject(error));
     })
   };
